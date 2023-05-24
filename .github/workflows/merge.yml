@@ -1,0 +1,22 @@
+name: Run Script on Merge
+
+on:
+  push:
+    branches:
+      - main  # Replace with your branch name or leave it as 'main' if that's your default branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Run Script
+      run: |
+        if [ "${{ github.event_name }}" == "pull_request" ] && [ "${{ github.event.action }}" == "closed" ] && [ "${{ github.event.pull_request.merged }}" == "true" ]; then
+          # Replace the following command with your script command
+          python3 /Users/ayanjitdutta/git_file/pro1/script.p
+        fi
+
